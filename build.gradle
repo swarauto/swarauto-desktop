@@ -1,0 +1,88 @@
+buildscript {
+    repositories {
+        flatDir dirs: 'libs'
+    }
+    dependencies {
+        classpath ':proguard:'
+    }
+}
+
+plugins {
+    id 'java'
+    id 'maven'
+    id 'com.github.johnrengelman.shadow' version '1.2.3'
+}
+
+group = 'com.swarauto'
+version = '1.0.0'
+
+repositories {
+    jcenter()
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    compile 'com.github.swarauto:swarauto-base:1.0.0'
+    compile group: 'ch.qos.logback', name: 'logback-core', version: '1.2.3'
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+
+    compile group: 'com.miglayout', name: 'miglayout', version: '3.7.4'
+    compile group: 'com.github.insubstantial', name: 'substance', version: '7.3'
+    compile group: 'org.bytedeco.javacpp-presets', name: 'opencv', version: '3.2.0-1.3'
+    compile group: 'org.bytedeco.javacpp-presets', name: 'opencv', version: '3.2.0-1.3', classifier: 'linux-x86_64'
+    compile group: 'org.bytedeco.javacpp-presets', name: 'opencv', version: '3.2.0-1.3', classifier: 'windows-x86_64'
+    compile group: 'org.bytedeco.javacpp-presets', name: 'opencv', version: '3.2.0-1.3', classifier: 'macosx-x86_64'
+    compile group: 'org.bytedeco.javacpp-presets', name: 'tesseract-platform', version: '3.05.01-1.4.1'
+
+    compileOnly(group: 'org.projectlombok', name: 'lombok', version: '1.16.18')
+
+    testCompile group: 'org.mockito', name: 'mockito-core', version: '2.13.0'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+project.ext {
+    jarNameBuild = "swarauto-desktop.jar"
+    jarNameProguard = "swarauto-desktop.proguard.jar"
+    jarNameRelease = "swarauto-desktop.jar"
+}
+
+shadowJar {
+    manifest {
+        attributes 'Main-Class': 'com.swarauto.Main'
+        attributes 'Package-Title': rootProject.name
+        attributes 'Package-Version': version
+    }
+    archiveName = jarNameBuild
+}
+
+import proguard.gradle.ProGuardTask
+
+task proguard(type: ProGuardTask, dependsOn: shadowJar) {
+    configuration 'proguard.txt'
+
+    injars "${project.libsDir}/${jarNameBuild}"
+    outjars "${project.libsDir}/${jarNameProguard}"
+}
+
+task buildZip(type: Zip, dependsOn: proguard) {
+
+    from('bin') {
+        into('bin')
+    }
+    from('images') {
+        into('images')
+    }
+    from('tutorial') {
+        into('tutorial')
+    }
+
+    from("${project.libsDir}") {
+        include "${jarNameProguard}"
+        into('bin')
+        rename { "${jarNameRelease}" }
+    }
+
+    from('run.linux.sh');
+    from('run.win.bat');
+    from('run.mac.command');
+}

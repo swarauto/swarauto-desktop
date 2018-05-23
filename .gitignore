@@ -1,0 +1,16 @@
+.metadata/
+/target/
+/.classpath
+/.project
+/.settings/
+build
+profiles/
+sold-runes/
+unknownStates/
+commonConfig.json
+swarauto.data
+.idea
+*.iml
+.gradle
+proguard.map
+/log
