@@ -14,7 +14,7 @@ plugins {
 }
 
 group = 'com.swarauto'
-version = '1.0.0'
+version = '1.0.1'
 
 repositories {
     jcenter()
@@ -22,7 +22,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.github.swarauto:swarauto-base:1.0.0'
+    compile 'com.github.swarauto:swarauto-base:1.0.1'
     compile group: 'ch.qos.logback', name: 'logback-core', version: '1.2.3'
     compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
 
