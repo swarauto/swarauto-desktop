@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/swarauto/swarauto-desktop.svg?branch=master)](https://travis-ci.org/swarauto/swarauto-desktop)
+
 **SWarAuto** is a smart tool that supports auto farming for game Summoners War: Sky Arena.
   - Auto farm Cairos Dungeon, Faimon, TOA, Rift beast.  
   - Auto refill energy. Retry on network problems.  
