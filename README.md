@@ -36,6 +36,13 @@
   - Choose your scenario, max refills, max runs...  
   - Click Start.  
 
+## Advanced usage  
+swarauto-desktop offers all features of autoing. But you need to keep your PC and Android connected via USB cable all the time. It's not very convenience.
+
+Here: [swarauto-android](https://github.com/swarauto/swarauto-android) provides convenience way to autoing solely in Android device.
+You create Device Config once in Desktop, then copy to Android and autoing without desktop connected.  
+You need a rooted Android device tho.
+
 # Dependencies
   - SWarAuto is inspired by [sw-bot](https://github.com/justindannguyen/sw-bot)
   - Use OpenCV for game screen recognition
