@@ -1,0 +1,24 @@
+language: java
+
+script:
+  - ./gradlew buildZip
+
+# Caching dependencies
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+
+# Github release
+deploy:
+  provider: releases
+  api_key:
+    secure: SwcsTdLLUqER3UY65p4oMfRAbND//1pK7fc57PCn/EFN/dwrZUvGbhLdPV2htW5d4n9Geny8aMUR66SqmAlvBoA7dA2RhSuKSqxyMFaiZnQf2TGsOT5u5aD3nAbQ30sIQnp5ExYg4ypUvAbcqYwkuC5e/u51Nd/4mKBpYzFCHwtm/Gv0Vg3d3D3qj6qjBqIN94YJl7hlXHMlyk8jSNjQgtM/EnXkzVmakUo3cEjVJf5Aorqfi+wGA12AB73xxhzZ2jHIzqzD1tSj8RNU1B2QXubiNL7F2NyU3oF6AF1XPl3nUW9dOo3CPMhj+9c5SD7udQ2tim1O3WCXtRb16Lj9DJdICJ1UmaSe0N3tTw9hUgZzjl6ir/X1fK8mJDxmRkyEgxhM6b5U9iI4P8849sn+/lkSuxAXkcNSF50N7ntWw/kd17LRNMmxEc4tsRmFhwDBGjxr/vZLhWP5Jf1UlqmOiWzgIN8xbog+wt0gP03ixLny5qH3+aALGSegTrCX9yx88mFgs/rEXwSZKQTgyQNVUKGxqX+dTMybhGS4ovZwbdzRsRgVWPavN0mTEXHRp34UmqvwCGytPW0UB1L8u8mDY0Pf5A/DrhX7lzDxOiVIWrNTtAFAGxF7Fc7D4wnPEF4r8fz/0xfOe8QzoXO4X9hi2qB7LTXTa+zBhJEZZAL5b2M=
+  file_glob: true
+  file: "build/distributions/swarauto-desktop*.zip"
+  skip_cleanup: true
+  on:
+    tags: true
