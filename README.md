@@ -11,6 +11,9 @@
 # Requirements
   - Supported OS: Windows/Linux/Mac
   - An Android Device
+  
+# Download  
+[Download here](https://github.com/swarauto/swarauto-desktop/releases)
 
 # How to use
 
