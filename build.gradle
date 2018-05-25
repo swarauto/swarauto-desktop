@@ -64,7 +64,7 @@ task proguard(type: ProGuardTask, dependsOn: shadowJar) {
     outjars "${project.libsDir}/${jarNameProguard}"
 }
 
-task buildZip(type: Zip, dependsOn: proguard) {
+task buildZip(type: Zip, dependsOn: shadowJar) {
 
     from('bin') {
         into('bin')
@@ -77,7 +77,7 @@ task buildZip(type: Zip, dependsOn: proguard) {
     }
 
     from("${project.libsDir}") {
-        include "${jarNameProguard}"
+        include "${jarNameBuild}"
         into('bin')
         rename { "${jarNameRelease}" }
     }
