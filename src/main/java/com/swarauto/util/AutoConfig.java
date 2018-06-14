@@ -22,10 +22,10 @@ public class AutoConfig {
         preset169.replayButton = new Point(600, 585);
         preset169.rechargeEnergyYes = new Point(795, 655);
         preset169.rechargeEnergyNo = new Point(1130, 655);
-        preset169.rechargeEnergy = new Point(550, 590);
+        preset169.rechargeEnergy = new Point(800, 590);
         preset169.confirmRechargeEnergy = new Point(800, 660);
         preset169.ackRechargeEnergyOk = new Point(960, 655);
-        preset169.closeRechargeEnergy = new Point(1600, 150);
+        preset169.closeRechargeEnergy = new Point(1800, 115);
         preset169.rareLevelBox = new Rectangle(1186, 364, 128, 29);
 
         PRESETS.add(preset169);
